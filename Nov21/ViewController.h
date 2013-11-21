@@ -1,5 +1,5 @@
 //
-//  Nov21AppDelegate.h
+//  ViewController.h
 //  Nov21
 //
 //  Created by Michael Gradilone on 11/21/13.
@@ -8,12 +8,9 @@
 
 #import <UIKit/UIKit.h>
 
-@interface Nov21AppDelegate : UIResponder <UIApplicationDelegate> {
-	UIWindow *_window;
-	NSArray *titles;
-}
+@interface ViewController : UIViewController
 
+- (id) initWithTitle: (NSString *) title;
 - (void) nextStation;
-@property (strong, nonatomic) UIWindow *window;
 
 @end

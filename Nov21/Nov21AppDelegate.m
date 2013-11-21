@@ -7,17 +7,47 @@
 //
 
 #import "Nov21AppDelegate.h"
+#import "ViewController.h"
 
 @implementation Nov21AppDelegate
 
 - (BOOL)application:(UIApplication *)application didFinishLaunchingWithOptions:(NSDictionary *)launchOptions
 {
-    self.window = [[UIWindow alloc] initWithFrame:[[UIScreen mainScreen] bounds]];
-    // Override point for customization after application launch.
-    self.window.backgroundColor = [UIColor whiteColor];
-    [self.window makeKeyAndVisible];
-    return YES;
+    titles = [NSArray arrayWithObjects:
+              @"Donatello",
+              @"Leonardo",
+              @"Michelangelo",
+              @"Raphael",
+              nil
+              ];
+    
+	// Override point for customization after application launch.
+	NSString *title = [titles objectAtIndex: 0];
+	ViewController *viewController = [[ViewController alloc] initWithTitle: title];
+	self.window = [[UIWindow alloc] initWithFrame: [UIScreen mainScreen].bounds];
+    
+	self.window.rootViewController =
+    [[UINavigationController alloc] initWithRootViewController: viewController];
+    
+	[self.window makeKeyAndVisible];
+	return YES;
 }
+
+- (void) nextStation {
+	
+	UINavigationController *navigationController =
+    (UINavigationController *)self.window.rootViewController;
+    
+	NSUInteger i = navigationController.viewControllers.count;
+    
+	if (i < titles.count) {
+		//We can go east because we haven't reached the end of the line yet.
+		NSString *title = [titles objectAtIndex: i];
+		ViewController *viewController = [[ViewController alloc] initWithTitle: title];
+		[navigationController pushViewController: viewController animated: YES];
+	}
+}
+
 
 - (void)applicationWillResignActive:(UIApplication *)application
 {
